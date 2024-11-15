@@ -17,3 +17,13 @@ run;
 proc means data=ticket_sales;
 var ticket_price;
 run;
+
+data tickets_new;
+    set tickets;
+    format Ticket_Price dollar12. Time time. date date9.;
+    if promotion = 0 then p='no';
+    else p='yes';
+run;
+
+proc print data=tickets_new;
+run;
