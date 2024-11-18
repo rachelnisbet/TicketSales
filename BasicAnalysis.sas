@@ -19,10 +19,11 @@ var ticket_price;
 run;
 
 data tickets_new;
-    set tickets;
+    length p $ 3;
+    set ticket_sales;
     format Ticket_Price dollar12. Time time. date date9.;
-    if promotion = 0 then p='no';
-    else p='yes';
+    if promotion = 0 then p='No';
+    else p='Yes';
 run;
 
 proc print data=tickets_new;
