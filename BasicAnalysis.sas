@@ -23,11 +23,11 @@ run;
 
 /* We need to do some data manipulation... */
 data tickets_new;
-    length p $ 3; /* Important because of how we wrote out IF/THEN */
+    length Promo $ 3; /* Important because of how we wrote out IF/THEN */
     set ticket_sales;
     format Ticket_Price dollar12. Time time. date date9.;
-    if promotion = 0 then p='No';
-    else p='Yes';
+    if promotion = 0 then Promo='No';
+    else Promo='Yes';
     drop promotion;
 run;
 
@@ -37,5 +37,5 @@ run;
 
 /* View frequencies */
 proc freq data=tickets_new;
-tables Number_of_Tickets*P / nocum nopercent ;
+tables Number_of_Tickets*Promo / nocum nopercent ;
 run;
