@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+
+# Number of rows and columns
+num_rows = 10
+columns = ['Lower Bowl', 'VIP Ticket', 'Upper Deck']
+
+# Define probabilities for each column
+probabilities = {
+    'Lower Bowl': [0.4, 0.6],  
+    'VIP Ticket': [0.1, 0.9],   
+    'Upper Deck': [0.2, 0.8]  
+}
+
+# Generate binary data for each column
+data = {
+    column: np.random.choice([0, 1], size=num_rows, p=probabilities[column])
+    for column in columns
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+#Transpose
+transposed = df.transpose()  # or df.T
+
+# Calculate the sum of binary columns for each row
+transposed['Binary Sum'] = transposed.sum(axis=1)
+
+print(transposed)
